@@ -14,34 +14,28 @@ namespace LogGenerator
 
         #region Switches
 
-        //ERROR LOGS
+        //INCLUDE/EXCLUDE
         private const bool ADD_ERROR_LOGS = true;
-        private const int NUM_ERROR_LOGS = 10000;
-        private const string ERROR_MSG = "the systen has encounteered an unexpected error ... so FIX IT";
-
-        //ERROR LOGS WITH EXCEPTION
         private const bool ADD_ERROR_EX_LOGS = true;
-        private const int NUM_ERROR_EX_LOGS = 10000;
-        private const string ERROR_EX_MSG = "null reference error";
-
-        //INFO LOGS
         private const bool ADD_INFO_LOGS = true;
-        private const int NUM_INFO_LOGS = 10000;
-        private const string INFO_MSG = "some info for you sir!";
-
-        //INFO LOGS WITH EXCEPTION
         private const bool ADD_INFO_EX_LOGS = true;
-        private const int NUM_INFO_EX_LOGS = 10000;
-        private const string INFO_EX_MSG = "oh noes! Invalid cast bro!";
-
-        //DEBUG LOGS 
         private const bool ADD_DEBUG_LOGS = true;
-        private const int NUM_DEBUG_LOGS = 10000;
-        private const string DEBUG_MSG = "we may ave e boouug";
-
-        //DEBUG LOGS WITH EXCEPTION
         private const bool ADD_DEBUG_EX_LOGS = true;
+
+        //HOW MANY OF EACH 
+        private const int NUM_ERROR_LOGS = 10000;
+        private const int NUM_ERROR_EX_LOGS = 10000;
+        private const int NUM_INFO_LOGS = 10000;
+        private const int NUM_INFO_EX_LOGS = 10000;
+        private const int NUM_DEBUG_LOGS = 10000;
         private const int NUM_DEBUG_EX_LOGS = 10000;
+
+        //MESSAGES
+        private const string ERROR_MSG = "the systen has encounteered an unexpected error ... so FIX IT";
+        private const string ERROR_EX_MSG = "null reference error";
+        private const string INFO_MSG = "some info for you sir!";
+        private const string INFO_EX_MSG = "oh noes! Invalid cast bro!";
+        private const string DEBUG_MSG = "we may ave e boouug";
         private const string DEBUG_EX_MSG = "we may ave e boouug";
 
         #endregion 
