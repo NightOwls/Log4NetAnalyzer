@@ -27,6 +27,9 @@ namespace LogGenerator
 
         #region Switches
 
+        //MAKE THIS GREATER THAN 0 TO SET THE NUMBER OF LOGS PER TYPE IN ONE GO 
+        private const int DEFAULT_NUM_LOGS = 1000;
+
         //INCLUDE/EXCLUDE
         private const bool ADD_DEBUG_LOGS = true;
         private const bool ADD_DEBUG_EX_LOGS = true;
@@ -40,16 +43,16 @@ namespace LogGenerator
         private const bool ADD_FATAL_EX_LOGS = true;
 
         //HOW MANY OF EACH 
-        private const int NUM_DEBUG_LOGS = 1000;
-        private const int NUM_DEBUG_EX_LOGS = 1000;
-        private const int NUM_INFO_LOGS = 1000;
-        private const int NUM_INFO_EX_LOGS = 1000;
-        private const int NUM_WARN_LOGS = 1000;
-        private const int NUM_WARN_EX_LOGS = 1000;
-        private const int NUM_ERROR_LOGS = 1000;
-        private const int NUM_ERROR_EX_LOGS = 1000;
-        private const int NUM_FATAL_LOGS = 1000;
-        private const int NUM_FATAL_EX_LOGS = 1000;
+        private const int NUM_DEBUG_LOGS =    DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
+        private const int NUM_DEBUG_EX_LOGS = DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
+        private const int NUM_INFO_LOGS =     DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
+        private const int NUM_INFO_EX_LOGS =  DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
+        private const int NUM_WARN_LOGS =     DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
+        private const int NUM_WARN_EX_LOGS =  DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
+        private const int NUM_ERROR_LOGS =    DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
+        private const int NUM_ERROR_EX_LOGS = DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
+        private const int NUM_FATAL_LOGS =    DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
+        private const int NUM_FATAL_EX_LOGS = DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
 
         //MESSAGES
         private const string DEBUG_MSG = "we may ave e boouug";
