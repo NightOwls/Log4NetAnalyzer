@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using log4net;
 using NUnit.Framework;
 
@@ -28,7 +29,7 @@ namespace LogGenerator
         #region Switches
 
         //MAKE THIS GREATER THAN 0 TO SET THE NUMBER OF LOGS PER TYPE IN ONE GO 
-        private const int DEFAULT_NUM_LOGS = 1000;
+        private const int DEFAULT_NUM_LOGS = 10000;
 
         //INCLUDE/EXCLUDE
         private const bool ADD_DEBUG_LOGS = true;
@@ -73,6 +74,9 @@ namespace LogGenerator
         [Test]
         public void GenerateLogs()
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             WriteLog(LogLevel.DEBUG, NUM_DEBUG_LOGS, DEBUG_MSG);
             WriteLog(LogLevel.DEBUG, NUM_DEBUG_EX_LOGS, DEBUG_EX_MSG, GenerateInvalidCastException());
             WriteLog(LogLevel.INFO, NUM_INFO_LOGS, INFO_MSG);
@@ -83,6 +87,10 @@ namespace LogGenerator
             WriteLog(LogLevel.ERROR, NUM_ERROR_EX_LOGS, ERROR_EX_MSG, GenerateNullReferenceException());
             WriteLog(LogLevel.FATAL, NUM_FATAL_LOGS, FATAL_MSG);
             WriteLog(LogLevel.FATAL, NUM_FATAL_EX_LOGS, FATAL_EX_MSG, GenerateNullReferenceException());
+
+            stopwatch.Stop();
+
+            Debug.WriteLine("Insert took {0}s", stopwatch.ElapsedMilliseconds/1000);
         }
 
         #endregion
