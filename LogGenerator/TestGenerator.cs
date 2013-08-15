@@ -76,8 +76,7 @@ namespace LogGenerator
         [Test]
         public void GenerateLogs()
         {
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
+            var stopwatch = Stopwatch.StartNew();
 
             WriteLog(LogLevel.DEBUG, NUM_DEBUG_LOGS, DEBUG_MSG);
             WriteLog(LogLevel.DEBUG, NUM_DEBUG_EX_LOGS, DEBUG_EX_MSG, GenerateInvalidCastException());
