@@ -59,13 +59,13 @@ namespace Log.Test.Generator
 
         //MESSAGES
         private const string DEBUG_MSG = "we may ave e boouug";
-        private const string DEBUG_EX_MSG = "we may ave e boouug";
+        private const string DEBUG_EX_MSG = "we may ave en exceptional boouug";
         private const string INFO_MSG = "some info for you sir!";
-        private const string INFO_EX_MSG = "oh noes! Invalid cast bro!";
+        private const string INFO_EX_MSG = "ahhh neeeew! Ets en envelid cast brew!";
         private const string WARN_MSG = "Warning ... DANGER Will Robinson ... Warning";
         private const string WARN_EX_MSG = "Warning ... EXCEPTIONAL DANGER Will Robinson ... Warning";
         private const string ERROR_MSG = "the system has encounteered an unexpected error ... so FIX IT";
-        private const string ERROR_EX_MSG = "null reference error";
+        private const string ERROR_EX_MSG = "is it a bird? is it a plane? no ... its nothing ... and thats the problem";
         private const string FATAL_MSG = "THE WEB SERVER IS DOWWWWWWWNNNN";
         private const string FATAL_EX_MSG = "THE WEB SERVER IS DOWWWWWWWNNNN AND SOMETHING KILLED IT";
 
