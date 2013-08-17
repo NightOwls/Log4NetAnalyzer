@@ -3,7 +3,7 @@ using System.Diagnostics;
 using log4net;
 using NUnit.Framework;
 
-namespace LogGenerator
+namespace Log.Test.Generator
 {
     public class TestGenerator
     {
