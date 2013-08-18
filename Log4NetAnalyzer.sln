@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Web.Mvc", "Log.Web.Mvc\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Data", "Log.Data\Log.Data.csproj", "{895763DB-9C87-459C-98B0-FD28AE267535}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Data.Sql", "Log.Data.Sql\Log.Data.Sql.csproj", "{7395CEC2-D8FD-43D3-852F-E68890280E1C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Service", "Log.Service\Log.Service.csproj", "{AA7CC885-1941-4846-A5B6-A9960BBA5CD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Domain", "Log.Domain\Log.Domain.csproj", "{00C27D7E-B806-4DAA-9CFC-F927399CCA62}"
@@ -16,6 +14,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3912611B-836E-46B3-B7D5-0F5BE7C5F443}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Model", "Log.Model\Log.Model.csproj", "{86438049-F087-40B3-B6ED-3FF63D39D1C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Data.Mongo", "Log.Data.Mongo\Log.Data.Mongo.csproj", "{F5E01FF9-84A7-4576-954E-3C3B40C453E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Test.Repository", "Log.Test.Repository\Log.Test.Repository.csproj", "{E1116196-121A-43CD-94C8-F1A251E035AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Log4net.Appender", "Log.Log4net.Appender\Log.Log4net.Appender.csproj", "{9A51C96E-FC24-4306-8BA6-2E61804484C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +39,6 @@ Global
 		{895763DB-9C87-459C-98B0-FD28AE267535}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{895763DB-9C87-459C-98B0-FD28AE267535}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{895763DB-9C87-459C-98B0-FD28AE267535}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7395CEC2-D8FD-43D3-852F-E68890280E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7395CEC2-D8FD-43D3-852F-E68890280E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7395CEC2-D8FD-43D3-852F-E68890280E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7395CEC2-D8FD-43D3-852F-E68890280E1C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AA7CC885-1941-4846-A5B6-A9960BBA5CD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA7CC885-1941-4846-A5B6-A9960BBA5CD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA7CC885-1941-4846-A5B6-A9960BBA5CD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,11 +51,24 @@ Global
 		{86438049-F087-40B3-B6ED-3FF63D39D1C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86438049-F087-40B3-B6ED-3FF63D39D1C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86438049-F087-40B3-B6ED-3FF63D39D1C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5E01FF9-84A7-4576-954E-3C3B40C453E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5E01FF9-84A7-4576-954E-3C3B40C453E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5E01FF9-84A7-4576-954E-3C3B40C453E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5E01FF9-84A7-4576-954E-3C3B40C453E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1116196-121A-43CD-94C8-F1A251E035AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1116196-121A-43CD-94C8-F1A251E035AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1116196-121A-43CD-94C8-F1A251E035AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1116196-121A-43CD-94C8-F1A251E035AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A51C96E-FC24-4306-8BA6-2E61804484C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A51C96E-FC24-4306-8BA6-2E61804484C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A51C96E-FC24-4306-8BA6-2E61804484C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A51C96E-FC24-4306-8BA6-2E61804484C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{050AA9CB-7DC8-47C3-A010-ADD7C70D9110} = {3912611B-836E-46B3-B7D5-0F5BE7C5F443}
+		{E1116196-121A-43CD-94C8-F1A251E035AC} = {3912611B-836E-46B3-B7D5-0F5BE7C5F443}
 	EndGlobalSection
 EndGlobal

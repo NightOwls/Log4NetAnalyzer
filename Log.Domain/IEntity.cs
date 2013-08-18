@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using MongoDB.Bson;
 
 namespace Log.Domain
 {
     public interface IEntity
     {
-        int Id { get; } 
+        ObjectId Id { get; set; } 
     }
 }

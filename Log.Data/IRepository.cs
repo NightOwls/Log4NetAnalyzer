@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 using Log.Domain;
 
 namespace Log.Data
 {
-    public interface IRepository<T, TK> 
+    public interface IRepository<T> 
         where T : IEntity
-        where TK : class, T
     {
+        T Insert(T entity);
+
+        T First(Func<T, bool> filter);
+        T FirstOrDefault(Func<T, bool> filter);
+        IEnumerable<T> Select<TMember>(Expression<Func<T, TMember>> filter, TMember value);
+       // IEnumerable<T> Select(Func<T, bool> filter, Func<T, object> orderBy);
 
     }
 }

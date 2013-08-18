@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using MongoDB.Bson;
 
 namespace Log.Domain
 {
     public abstract class EntityBase : IEntity
     {
-        public virtual int Id { get; private set; }
+        public ObjectId Id { get; set; }
     }
 }
