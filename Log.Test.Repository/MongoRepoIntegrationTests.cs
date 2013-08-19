@@ -5,7 +5,6 @@ using Log.Domain;
 using MongoDB.Bson;
 using NUnit.Framework;
 
-
 namespace Log.Test.Repository
 {
     public class MongoRepoIntegrationTests
@@ -71,7 +70,8 @@ namespace Log.Test.Repository
             Assert.IsTrue(result.All(x => x.Level == LogLevel.Debug));
         }
 
-        [Test] public void TestSelectOrdered()
+        [Test]
+        public void TestSelectOrdered()
         {
             var result = mongoRepo.Select(x => x.Level == LogLevel.Fatal && x.Exception == string.Empty, x => x.LogTime, true).ToList();
 
