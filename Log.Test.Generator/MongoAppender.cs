@@ -13,9 +13,12 @@ namespace Log.Test.Generator
 
         protected override void Append(LoggingEvent loggingEvent)
         {
+            var level = LogLevel.Debug;
+            Enum.TryParse(loggingEvent.Level.DisplayName, true, out level);
+
             var newLog = new LogRecord
                              {
-                                 
+                                 Level =  level,
                                  LogTime = loggingEvent.TimeStamp,
                                  Logger = loggingEvent.LoggerName,
                                  Thread = loggingEvent.ThreadName,
@@ -30,8 +33,6 @@ namespace Log.Test.Generator
                                                                              .Aggregate((a, b) => string.Format("{0}{1}{2}", a, Environment.NewLine, b))
                              };
 
-            newLog.Level = GetLogLevel(loggingEvent.Level);
-            
             var repo = new MongoRepository<LogRecord>();
             repo.Insert(newLog);
         }

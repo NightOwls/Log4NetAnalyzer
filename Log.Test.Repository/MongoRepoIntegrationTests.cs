@@ -55,6 +55,7 @@ namespace Log.Test.Repository
         [Test]
         public void TestSelect()
         {
+
             var result = mongoRepo.Select(x => ((int)x.Level) == 0).ToList();
 
             Assert.IsTrue(result.Any());

@@ -2,26 +2,12 @@
 using System.Diagnostics;
 using log4net;
 using NUnit.Framework;
+using Log.Domain;
 
 namespace Log.Test.Generator
 {
     public class TestGenerator
     {
-        #region Enums
-
-            private enum LogLevel
-            {
-                OFF
-                , ALL
-                , DEBUG
-                , INFO
-                , WARN
-                , ERROR
-                , FATAL
-            }
-
-        #endregion
-
         #region Private Variables 
 
         private readonly ILog log = LogManager.GetLogger(typeof(TestGenerator).FullName);
@@ -45,7 +31,7 @@ namespace Log.Test.Generator
         //HOW MANY OF EACH 
         
         //MAKE THIS GREATER THAN 0 TO SET THE NUMBER OF LOGS PER TYPE IN ONE GO 
-        private const int DEFAULT_NUM_LOGS = 1;
+        private const int DEFAULT_NUM_LOGS = 1000;
 
         //OTHERWISE SET THEM ONE BY ONE 
         private const int NUM_DEBUG_LOGS =    DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
@@ -80,16 +66,16 @@ namespace Log.Test.Generator
         {
             var stopwatch = Stopwatch.StartNew();
 
-            //WriteLog(LogLevel.DEBUG, NUM_DEBUG_LOGS, DEBUG_MSG);
-            //WriteLog(LogLevel.DEBUG, NUM_DEBUG_EX_LOGS, DEBUG_EX_MSG, GenerateInvalidCastException());
-            //WriteLog(LogLevel.INFO, NUM_INFO_LOGS, INFO_MSG);
-            //WriteLog(LogLevel.INFO, NUM_INFO_EX_LOGS, INFO_EX_MSG, GenerateApplicationException());
-            //WriteLog(LogLevel.WARN, NUM_WARN_LOGS, WARN_MSG);
-            //WriteLog(LogLevel.WARN, NUM_WARN_EX_LOGS, WARN_EX_MSG, GenerateInvalidCastException());
-            //WriteLog(LogLevel.ERROR, NUM_ERROR_LOGS, ERROR_MSG);
-            //WriteLog(LogLevel.ERROR, NUM_ERROR_EX_LOGS, ERROR_EX_MSG, GenerateNullReferenceException());
-            WriteLog(LogLevel.FATAL, NUM_FATAL_LOGS, FATAL_MSG);
-            WriteLog(LogLevel.FATAL, NUM_FATAL_EX_LOGS, FATAL_EX_MSG, GenerateNullReferenceException());
+            WriteLog(LogLevel.Debug, NUM_DEBUG_LOGS, DEBUG_MSG);
+            WriteLog(LogLevel.Debug, NUM_DEBUG_EX_LOGS, DEBUG_EX_MSG, GenerateInvalidCastException());
+            WriteLog(LogLevel.Info, NUM_INFO_LOGS, INFO_MSG);
+            WriteLog(LogLevel.Info, NUM_INFO_EX_LOGS, INFO_EX_MSG, GenerateApplicationException());
+            WriteLog(LogLevel.Warn, NUM_WARN_LOGS, WARN_MSG);
+            WriteLog(LogLevel.Warn, NUM_WARN_EX_LOGS, WARN_EX_MSG, GenerateInvalidCastException());
+            WriteLog(LogLevel.Error, NUM_ERROR_LOGS, ERROR_MSG);
+            WriteLog(LogLevel.Error, NUM_ERROR_EX_LOGS, ERROR_EX_MSG, GenerateNullReferenceException());
+            WriteLog(LogLevel.Fatal, NUM_FATAL_LOGS, FATAL_MSG);
+            WriteLog(LogLevel.Fatal, NUM_FATAL_EX_LOGS, FATAL_EX_MSG, GenerateNullReferenceException());
 
             stopwatch.Stop();
 
@@ -147,23 +133,23 @@ namespace Log.Test.Generator
             {
                 switch (level)
                 {
-                    case LogLevel.DEBUG:
+                    case LogLevel.Debug:
                         if (ex == null && ADD_DEBUG_LOGS) log.Debug(message);
                         if (ex != null && ADD_DEBUG_EX_LOGS) log.Debug(message, ex);
                         break;
-                    case LogLevel.INFO:
+                    case LogLevel.Info:
                         if (ex == null && ADD_INFO_LOGS) log.Info(message);
                         if (ex != null && ADD_INFO_EX_LOGS) log.Info(message, ex);
                         break;
-                    case LogLevel.WARN:
+                    case LogLevel.Warn:
                         if(ex == null && ADD_WARN_LOGS) log.Warn(message);
                         if(ex!= null && ADD_WARN_EX_LOGS) log.Warn(message, ex);
                         break;
-                    case LogLevel.ERROR:
+                    case LogLevel.Error:
                         if(ex == null && ADD_ERROR_LOGS) log.Error(message);
                         if(ex!= null && ADD_ERROR_EX_LOGS) log.Error(message, ex);
                         break;
-                   case LogLevel.FATAL:
+                   case LogLevel.Fatal:
                        if(ex == null && ADD_FATAL_LOGS) log.Fatal(message);
                         if(ex!= null && ADD_FATAL_EX_LOGS) log.Fatal(message, ex);
                         break;
