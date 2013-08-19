@@ -4,10 +4,8 @@ using System.Configuration;
 using System.Data;
 using System.Linq.Expressions;
 using Log.Domain;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
-using System.Linq;
 
 namespace Log.Data.Mongo
 {
@@ -95,7 +93,6 @@ namespace Log.Data.Mongo
             mongoCollection.Save(entity);
         }
 
-
-        #endregion 
+        #endregion
     }
 }
