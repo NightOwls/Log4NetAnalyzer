@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using log4net;
 using NUnit.Framework;
@@ -10,8 +11,16 @@ namespace Log.Test.Generator
     {
         #region Private Variables 
 
-        private readonly ILog log = LogManager.GetLogger(typeof(TestGenerator).FullName);
-       
+        private readonly ILog billSplitsLog = LogManager.GetLogger("BillSplits");
+        private readonly ILog easterHuntLog = LogManager.GetLogger("EasterHunt");
+        private readonly ILog shapeMatcherLog = LogManager.GetLogger("ShapeMatcher");
+        private readonly ILog cafeCoderLog = LogManager.GetLogger("CafeCoder");
+        private readonly ILog evilPigeonLog = LogManager.GetLogger("EvilPigeon");
+        private readonly ILog codeFrenzyLog = LogManager.GetLogger("CodeFrenzy");
+        private readonly ILog iDevForFunLog = LogManager.GetLogger("iDevForFun");
+
+        private List<ILog> loggerList;
+
         #endregion 
 
         #region Switches
@@ -58,6 +67,25 @@ namespace Log.Test.Generator
         private const string FATAL_EX_MSG = "THE WEB SERVER IS DOWWWWWWWNNNN AND SOMETHING KILLED IT";
 
         #endregion 
+
+        #region Setup/Teardown
+
+        [TestFixtureSetUp]
+        public void Init()
+        {
+            loggerList = new List<ILog>
+                             {
+                                 billSplitsLog,
+                                 easterHuntLog,
+                                 shapeMatcherLog,
+                                 cafeCoderLog,
+                                 evilPigeonLog,
+                                 codeFrenzyLog,
+                                 iDevForFunLog
+                             };
+        }
+
+        #endregion
 
         #region Generator
 
@@ -131,6 +159,8 @@ namespace Log.Test.Generator
         {
             for(var i = 0; i < numLogs; i++)
             {
+                var log = GetRandomLogger();
+
                 switch (level)
                 {
                     case LogLevel.Debug:
@@ -157,6 +187,13 @@ namespace Log.Test.Generator
                 }
             }
         }
+
+        private ILog GetRandomLogger()
+        {
+            var rnd = new Random();
+            var loggerIndex = rnd.Next(0, loggerList.Count - 1);
+            return loggerList[loggerIndex];
+        }   
 
         #endregion
 
