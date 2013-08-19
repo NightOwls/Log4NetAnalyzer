@@ -31,7 +31,7 @@ namespace Log.Test.Generator
         //HOW MANY OF EACH 
         
         //MAKE THIS GREATER THAN 0 TO SET THE NUMBER OF LOGS PER TYPE IN ONE GO 
-        private const int DEFAULT_NUM_LOGS = 1000;
+        private const int DEFAULT_NUM_LOGS = 2000;
 
         //OTHERWISE SET THEM ONE BY ONE 
         private const int NUM_DEBUG_LOGS =    DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;

@@ -3,10 +3,10 @@ namespace Log.Domain
 {
     public enum LogLevel
     {
-        Debug = 0,
-        Info = 1, 
-        Warn = 2, 
-        Error = 3,
-        Fatal = 4
+        Debug = 10,
+        Info = 20, 
+        Warn = 30, 
+        Error = 40,
+        Fatal = 50
     }
 }
