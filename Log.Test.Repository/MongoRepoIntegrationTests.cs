@@ -10,7 +10,13 @@ namespace Log.Test.Repository
 {
     public class MongoRepoIntegrationTests
     {
+        #region Private variables 
+
         private MongoRepository<LogRecord> mongoRepo;
+
+        #endregion
+
+        #region Setup/Teardown
 
         [TestFixtureSetUp]
         public void Init()
@@ -24,7 +30,11 @@ namespace Log.Test.Repository
             mongoRepo = null;
         }
 
-    [Test]
+        #endregion
+
+        #region Tests
+
+        [Test]
         public void TestInsert()
         {
             var newLog = new LogRecord
@@ -46,7 +56,7 @@ namespace Log.Test.Repository
         [Test]
         public void TestFind()
         {
-            var result = mongoRepo.Select(x => x.Logger == "Log.Test.Generator.TestGenerator");
+            var result = mongoRepo.Select(x => x.Logger == "Log.Test.Generator.TestGenerator").ToList();
 
             Assert.IsTrue(result.Any());
             Console.WriteLine(result.First().Message);
@@ -71,5 +81,7 @@ namespace Log.Test.Repository
             Assert.IsTrue(result.First().LogTime == result.Max(x => x.LogTime));
             Assert.IsTrue(result.Last().LogTime == result.Min(x => x.LogTime));
         }
+
+        #endregion
     }
 }
