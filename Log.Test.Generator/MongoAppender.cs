@@ -7,18 +7,16 @@ using System.Linq;
 
 namespace Log.Test.Generator
 {
+    /// <summary>
+    /// Really only for internal testing use. All external appenders should log to a service interface rather than directly to the database 
+    /// </summary>
     public class MongoAppender : AppenderSkeleton
     {
-        //Really only for internal testing use. All external appenders should log to a service interface rather than directly to the database 
-
         protected override void Append(LoggingEvent loggingEvent)
         {
-            var level = LogLevel.Debug;
-            Enum.TryParse(loggingEvent.Level.DisplayName, true, out level);
-
             var newLog = new LogRecord
                              {
-                                 Level =  level,
+                                 Level =  GetLogLevel(loggingEvent.Level),
                                  LogTime = loggingEvent.TimeStamp,
                                  Logger = loggingEvent.LoggerName,
                                  Thread = loggingEvent.ThreadName,
@@ -40,7 +38,7 @@ namespace Log.Test.Generator
         private static LogLevel GetLogLevel(Level level)
         {
             LogLevel logLevel;
-            return Enum.TryParse(level.Name, out logLevel) ? logLevel : LogLevel.Debug;
+            return Enum.TryParse(level.Name, true, out logLevel) ? logLevel : LogLevel.Debug;
         }
     }
 }
