@@ -55,16 +55,21 @@ namespace Log.Test.Repository
         [Test]
         public void TestSelect()
         {
-
-            var result = mongoRepo.Select(x => ((int)x.Level) == 0).ToList();
+            var result = mongoRepo.Select(x => x.Level == LogLevel.Debug).ToList();
 
             Assert.IsTrue(result.Any());
-            Assert.IsTrue(result.All(x => x.Level == 0));
+            Assert.IsTrue(result.All(x => x.Level == LogLevel.Debug));
         }
 
         [Test] public void TestSelectOrdered()
         {
-            
+            var result = mongoRepo.Select(x => x.Level == LogLevel.Fatal && x.Exception == string.Empty, x => x.LogTime, true).ToList();
+
+            Assert.IsTrue(result.Any());
+            Assert.IsTrue(result.All(x => x.Level == LogLevel.Fatal));
+            Assert.IsTrue(result.All(x => x.Exception == string.Empty));
+            Assert.IsTrue(result.First().LogTime == result.Max(x => x.LogTime));
+            Assert.IsTrue(result.Last().LogTime == result.Min(x => x.LogTime));
         }
     }
 }

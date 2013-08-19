@@ -31,19 +31,19 @@ namespace Log.Test.Generator
         //HOW MANY OF EACH 
         
         //MAKE THIS GREATER THAN 0 TO SET THE NUMBER OF LOGS PER TYPE IN ONE GO 
-        private const int DEFAULT_NUM_LOGS = 2000;
+        private const int DEFAULT_NUM_LOGS = 0;
 
         //OTHERWISE SET THEM ONE BY ONE 
-        private const int NUM_DEBUG_LOGS =    DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
-        private const int NUM_DEBUG_EX_LOGS = DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
-        private const int NUM_INFO_LOGS =     DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
-        private const int NUM_INFO_EX_LOGS =  DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
-        private const int NUM_WARN_LOGS =     DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
-        private const int NUM_WARN_EX_LOGS =  DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
-        private const int NUM_ERROR_LOGS =    DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
-        private const int NUM_ERROR_EX_LOGS = DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
-        private const int NUM_FATAL_LOGS =    DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
-        private const int NUM_FATAL_EX_LOGS = DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 0;
+        private const int NUM_DEBUG_LOGS =    DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 1200;
+        private const int NUM_DEBUG_EX_LOGS = DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 500;
+        private const int NUM_INFO_LOGS =     DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 2000;
+        private const int NUM_INFO_EX_LOGS =  DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 2500;
+        private const int NUM_WARN_LOGS =     DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 100;
+        private const int NUM_WARN_EX_LOGS =  DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 1000;
+        private const int NUM_ERROR_LOGS =    DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 400;
+        private const int NUM_ERROR_EX_LOGS = DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 1500;
+        private const int NUM_FATAL_LOGS =    DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 500;
+        private const int NUM_FATAL_EX_LOGS = DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 300;
 
         //MESSAGES
         private const string DEBUG_MSG = "we may ave e boouug";
