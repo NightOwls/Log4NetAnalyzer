@@ -162,12 +162,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Fusion\BarChart.cs" />
+    <Compile Include="Models\Fusion\BaseFusion.cs" />
+    <Compile Include="Models\Fusion\ChartSet.cs" />
+    <Compile Include="Models\Fusion\DateCount.cs" />
+    <Compile Include="Models\Fusion\LineGraph.cs" />
+    <Compile Include="Models\Fusion\PieChart.cs" />
+    <Compile Include="Models\Widget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +236,29 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\FusionCharts\FCF_Area2D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_Bar2D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_Candlestick.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_Column2D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_Column3D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_Doughnut2D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_Funnel.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_Gantt.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_Line.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_MSArea2D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_MSBar2D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_MSColumn2D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_MSColumn2DLineDY.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_MSColumn3D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_MSColumn3DLineDY.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_MSLine.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_Pie2D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_Pie3D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_StackedArea2D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_StackedBar2D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_StackedColumn2D.swf" />
+    <Content Include="Scripts\FusionCharts\FCF_StackedColumn3D.swf" />
+    <Content Include="Scripts\FusionCharts\FusionCharts.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -281,6 +312,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Widgets\LineGraph.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
