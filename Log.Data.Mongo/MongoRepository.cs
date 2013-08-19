@@ -7,6 +7,7 @@ using Log.Domain;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
+using System.Linq;
 
 namespace Log.Data.Mongo
 {
@@ -52,46 +53,48 @@ namespace Log.Data.Mongo
             return entity;
         }
 
-        public T First(Func<T, bool> filter)
+        public T First(Expression<Func<T, bool>> filter)
         {
-            throw new NotImplementedException();
+            if(filter == null)
+            {
+                throw new ArgumentNullException("filter");
+            }
+
+            var query = Query<T>.Where(filter);
+            var result = mongoCollection.FindOneAs<T>(query);
+
+            if(result == null)
+            {
+                throw new InvalidOperationException(string.Format("object {0} not found", typeof(T)));
+            }
+
+            return result;
         }
 
-        public T FirstOrDefault(Func<T, bool> filter)
+        public T FirstOrDefault(Expression<Func<T, bool>> filter)
         {
-            throw new NotImplementedException();
+            var query = Query<T>.Where(filter);
+            return mongoCollection.FindOneAs<T>(query);
         }
 
-        public IEnumerable<T> Select<TMember>(Expression<Func<T, TMember>> filter, TMember value)
+        public IEnumerable<T> Select(Expression<Func<T, bool>> filter)
         {
-            var query = Query<T>.EQ(filter, value);
+            var query = Query<T>.Where(filter);
             return mongoCollection.FindAs<T>(query);
         }
 
-       // public IEnumerable<T> Select(Func<T, bool> filter, Func<T, object> orderBy)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public IEnumerable<T> Select(Expression<Func<T, bool>> filter, Expression<Func<T, object>> orderBy, bool descending)
+        {
+            var query = Query<T>.Where(filter);
+            var sort = descending ? SortBy<T>.Descending(orderBy) : SortBy<T>.Ascending(orderBy);
+            return mongoCollection.FindAs<T>(query).SetSortOrder(sort);
+        }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            mongoCollection.Save(entity);
         }
 
-        public void Delete(int? id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(IEnumerable<T> entities)
-        {
-            throw new NotImplementedException();
-        }
 
         #endregion 
     }

@@ -10,7 +10,21 @@ namespace Log.Test.Repository
 {
     public class MongoRepoIntegrationTests
     {
-        [Test]
+        private MongoRepository<LogRecord> mongoRepo;
+
+        [TestFixtureSetUp]
+        public void Init()
+        {
+            mongoRepo = new MongoRepository<LogRecord>();
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            mongoRepo = null;
+        }
+
+    [Test]
         public void TestInsert()
         {
             var newLog = new LogRecord
@@ -24,7 +38,6 @@ namespace Log.Test.Repository
 
             Assert.IsTrue(newLog.Id == ObjectId.Empty);
 
-            var mongoRepo = new MongoRepository<LogRecord>();
             mongoRepo.Insert(newLog);
 
             Assert.IsTrue(newLog.Id != ObjectId.Empty);
@@ -33,11 +46,24 @@ namespace Log.Test.Repository
         [Test]
         public void TestFind()
         {
-            var mongoRepo = new MongoRepository<LogRecord>();
-            var result = mongoRepo.Select(x => x.Level, LogLevel.Warn);
+            var result = mongoRepo.Select(x => x.Logger == "Log.Test.Generator.TestGenerator");
 
             Assert.IsTrue(result.Any());
-            Console.WriteLine(result.FirstOrDefault().ToString());
+            Console.WriteLine(result.First().Message);
+        }
+
+        [Test]
+        public void TestSelect()
+        {
+            var result = mongoRepo.Select(x => ((int)x.Level) == 0).ToList();
+
+            Assert.IsTrue(result.Any());
+            Assert.IsTrue(result.All(x => x.Level == 0));
+        }
+
+        [Test] public void TestSelectOrdered()
+        {
+            
         }
     }
 }

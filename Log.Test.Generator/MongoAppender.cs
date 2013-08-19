@@ -15,7 +15,7 @@ namespace Log.Test.Generator
         {
             var newLog = new LogRecord
                              {
-                                 Level = GetLogLevel(loggingEvent.Level),
+                                 
                                  LogTime = loggingEvent.TimeStamp,
                                  Logger = loggingEvent.LoggerName,
                                  Thread = loggingEvent.ThreadName,
@@ -29,6 +29,8 @@ namespace Log.Test.Generator
                                  CallStack = loggingEvent.LocationInformation.StackFrames.Select(x => x.ToString())
                                                                              .Aggregate((a, b) => string.Format("{0}{1}{2}", a, Environment.NewLine, b))
                              };
+
+            newLog.Level = GetLogLevel(loggingEvent.Level);
             
             var repo = new MongoRepository<LogRecord>();
             repo.Insert(newLog);
@@ -37,7 +39,7 @@ namespace Log.Test.Generator
         private static LogLevel GetLogLevel(Level level)
         {
             LogLevel logLevel;
-            return Enum.TryParse(level.Name, out logLevel) ? logLevel : LogLevel.All;
+            return Enum.TryParse(level.Name, out logLevel) ? logLevel : LogLevel.Debug;
         }
     }
 }
