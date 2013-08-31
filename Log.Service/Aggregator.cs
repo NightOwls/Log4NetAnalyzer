@@ -7,22 +7,23 @@ using Log.Domain;
 using Log.Model;
 using LogLevel = Log.Model.LogLevel;
 
-
 namespace Log.Service
 {
     public class Aggregator : IAggregator
     {
         #region Private Variables 
 
-        private readonly IRepository<Domain.LogRecord> repository; 
+        private readonly IRepository<LogRecord> repository;
+        private readonly IMapping mapping;
 
         #endregion
 
         #region Constructors
 
-        public Aggregator(IRepository<Domain.LogRecord> repository)
+        public Aggregator(IRepository<LogRecord> repository, IMapping mapping)
         {
             this.repository = repository;
+            this.mapping = mapping;
         } 
 
         #endregion
@@ -30,13 +31,12 @@ namespace Log.Service
         public IEnumerable<LogAggregate> GetLogCountPerApplication()
         {
             var domainResult = repository.GetLogAggregate("Logger");
-           return domainResult.Select(Mapping.Map<SimpleAggregate, LogAggregate>);
-            
+            return domainResult.Select(mapping.Map<SimpleAggregate, LogAggregate>);
         } 
 
         public IEnumerable<LogItem> GetLogItems(string applicationName)
         {
-            return repository.Select(x => x.Logger.ToLower() == applicationName.ToLower(), x => x.LogTime, true).Select(Mapping.Map<LogRecord, LogItem>);
+            return repository.Select(x => x.Logger.ToLower() == applicationName.ToLower(), x => x.LogTime, true).Select(mapping.Map<LogRecord, LogItem>);
         }
     }
 }

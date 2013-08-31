@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.1.1308.2321\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -61,6 +64,10 @@
     <ProjectReference Include="..\Log.Domain\Log.Domain.csproj">
       <Project>{00c27d7e-b806-4daa-9cfc-f927399cca62}</Project>
       <Name>Log.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Log.Ioc\Log.Ioc.csproj">
+      <Project>{4ed189f3-ffbc-4415-88f9-12de8a898e3c}</Project>
+      <Name>Log.Ioc</Name>
     </ProjectReference>
     <ProjectReference Include="..\Log.Model\Log.Model.csproj">
       <Project>{86438049-f087-40b3-b6ed-3ff63d39d1c1}</Project>

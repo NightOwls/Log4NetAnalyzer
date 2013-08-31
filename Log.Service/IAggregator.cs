@@ -9,7 +9,7 @@ namespace Log.Service
 {
     public interface IAggregator
     {
-
+        IEnumerable<LogItem> GetLogItems(string applicationName);
         IEnumerable<LogAggregate> GetLogCountPerApplication();
 
     }
