@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Test.Repository", "Log.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Log4net.Appender", "Log.Log4net.Appender\Log.Log4net.Appender.csproj", "{9A51C96E-FC24-4306-8BA6-2E61804484C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Test.Service", "Log.Test.Service\Log.Test.Service.csproj", "{297357F6-B59D-4660-9502-EC91462B0444}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{9A51C96E-FC24-4306-8BA6-2E61804484C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A51C96E-FC24-4306-8BA6-2E61804484C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A51C96E-FC24-4306-8BA6-2E61804484C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{297357F6-B59D-4660-9502-EC91462B0444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{297357F6-B59D-4660-9502-EC91462B0444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{297357F6-B59D-4660-9502-EC91462B0444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{297357F6-B59D-4660-9502-EC91462B0444}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,5 +76,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{050AA9CB-7DC8-47C3-A010-ADD7C70D9110} = {3912611B-836E-46B3-B7D5-0F5BE7C5F443}
 		{E1116196-121A-43CD-94C8-F1A251E035AC} = {3912611B-836E-46B3-B7D5-0F5BE7C5F443}
+		{297357F6-B59D-4660-9502-EC91462B0444} = {3912611B-836E-46B3-B7D5-0F5BE7C5F443}
 	EndGlobalSection
 EndGlobal

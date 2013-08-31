@@ -4,8 +4,11 @@ using System.Configuration;
 using System.Data;
 using System.Linq.Expressions;
 using Log.Domain;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
+using System.Linq;
 
 namespace Log.Data.Mongo
 {
@@ -92,6 +95,53 @@ namespace Log.Data.Mongo
         {
             mongoCollection.Save(entity);
         }
+
+        public IEnumerable<SimpleAggregate> GetLogAggregate(string groupByProperty)
+        {
+            var bson = new BsonDocument
+                           {
+                                {
+                                   "$group",
+                                   new BsonDocument
+                                       {
+                                           {
+                                               "_id", new BsonDocument
+                                                          {
+                                                              {
+                                                                  "GroupItem", "$" + groupByProperty
+                                                              }
+                                                          }
+
+                                           },
+                                           {
+                                               "Count", new BsonDocument
+                                                            {
+                                                                {
+                                                                    "$sum", 1
+                                                                }
+                                                            }
+                                           }
+                                       }
+                                   }
+                           };
+
+            return GetAggregate(bson);
+
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private IEnumerable<SimpleAggregate> GetAggregate(BsonDocument doc)
+        {
+            var result = mongoCollection.Aggregate(doc)
+                .ResultDocuments
+                .Select(BsonSerializer.Deserialize<SimpleAggregate>);
+
+            return result;
+        } 
+
 
         #endregion
     }

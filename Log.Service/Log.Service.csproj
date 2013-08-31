@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Munq.IocContainer">
+      <HintPath>..\packages\Munq.IocContainer.3.1.6\Lib\Munq.IocContainer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,7 +45,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aggregator.cs" />
+    <Compile Include="IAggregator.cs" />
+    <Compile Include="Mapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Log.Data.Mongo\Log.Data.Mongo.csproj">
+      <Project>{f5e01ff9-84a7-4576-954e-3c3b40c453e9}</Project>
+      <Name>Log.Data.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Log.Data\Log.Data.csproj">
+      <Project>{895763db-9c87-459c-98b0-fd28ae267535}</Project>
+      <Name>Log.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Log.Domain\Log.Domain.csproj">
+      <Project>{00c27d7e-b806-4daa-9cfc-f927399cca62}</Project>
+      <Name>Log.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Log.Model\Log.Model.csproj">
+      <Project>{86438049-f087-40b3-b6ed-3ff63d39d1c1}</Project>
+      <Name>Log.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
