@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Log.Data.Mongo;
 using Log.Domain;
@@ -47,39 +48,65 @@ namespace Log.Test.Repository
 
             Assert.IsTrue(newLog.Id == ObjectId.Empty);
 
+            var stopwatch = Stopwatch.StartNew();
+
             mongoRepo.Insert(newLog);
 
+            stopwatch.Stop();
+            
             Assert.IsTrue(newLog.Id != ObjectId.Empty);
+
+            Console.WriteLine("Insert took : {0}ms", stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
         public void TestFind()
         {
-            var result = mongoRepo.Select(x => x.Logger == "Log.Test.Generator.TestGenerator").ToList();
+            var stopwatch = Stopwatch.StartNew();
 
+            var result = mongoRepo.Select(x => x.Logger == "EvilPigeon" && x.Exception == string.Empty).ToList();
+
+            stopwatch.Stop();
+           
             Assert.IsTrue(result.Any());
             Console.WriteLine(result.First().Message);
+            Console.WriteLine("Fetch took : {0}ms", stopwatch.ElapsedMilliseconds);
+            Console.WriteLine("{0} records returned", result.Count);
         }
 
         [Test]
         public void TestSelect()
         {
-            var result = mongoRepo.Select(x => x.Level == LogLevel.Debug).ToList();
+            var stopwatch = Stopwatch.StartNew();
 
+            var result = mongoRepo.Select(x => x.Level == LogLevel.Debug && x.Exception == string.Empty).ToList();
+            
+            stopwatch.Stop();
+           
             Assert.IsTrue(result.Any());
             Assert.IsTrue(result.All(x => x.Level == LogLevel.Debug));
+
+            Console.WriteLine("Fetch took : {0}ms", stopwatch.ElapsedMilliseconds);
+            Console.WriteLine("{0} records returned", result.Count);
         }
 
         [Test]
         public void TestSelectOrdered()
         {
+            var stopwatch = Stopwatch.StartNew();
+
             var result = mongoRepo.Select(x => x.Level == LogLevel.Fatal && x.Exception == string.Empty, x => x.LogTime, true).ToList();
 
+            stopwatch.Stop();
+            
             Assert.IsTrue(result.Any());
             Assert.IsTrue(result.All(x => x.Level == LogLevel.Fatal));
             Assert.IsTrue(result.All(x => x.Exception == string.Empty));
             Assert.IsTrue(result.First().LogTime == result.Max(x => x.LogTime));
             Assert.IsTrue(result.Last().LogTime == result.Min(x => x.LogTime));
+
+            Console.WriteLine("Fetch took : {0}ms", stopwatch.ElapsedMilliseconds);
+            Console.WriteLine("{0} records returned", result.Count);
         }
 
         #endregion
