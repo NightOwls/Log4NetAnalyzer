@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Log.Data;
+using Log.Data.Mongo;
 using Log.Domain;
 using Log.Ioc;
 using Log.Service;
@@ -35,6 +36,7 @@ namespace Log.Test.Service
         }
 
         [Test]
+        [Category("Unit")]
         public void TestGetLogItems()
         {
             var aggregator = Container.Resolve<IAggregator>();
@@ -45,6 +47,7 @@ namespace Log.Test.Service
         }
 
         [Test]
+        [Category("Unit")]
         public void TestGetLogItemAggregate()
         {
             var aggregator = Container.Resolve<IAggregator>();
@@ -52,6 +55,16 @@ namespace Log.Test.Service
 
             Assert.IsTrue(result.Count() == 1);
             Assert.IsTrue(result.First().GroupItem == "Application");
+        }
+
+        [Test]
+        [Category("Integration")]
+        public void TetsGetApplicationErrorAggregate()
+        {
+            var aggregator = new Aggregator(new MongoRepository<LogRecord>(), new Mapping());
+            var result = aggregator.GetApplicationErrorAggregate().ToList();
+
+            Assert.IsTrue(result.Any());
         }
     }
 }

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationErrorAggregate.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="SimpleAggregate.cs" />

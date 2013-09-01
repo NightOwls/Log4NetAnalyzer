@@ -1,0 +1,13 @@
+
+printjson(
+db.LogAnalyserDb.aggregate([
+	{$group:{
+		_id:{
+				{"GroupItem": "$Logger"},
+				{"Level" : "$Level"}
+			},
+		count:{$sum:1}
+		}
+	}
+])
+)

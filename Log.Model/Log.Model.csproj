@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationErrorAggregate.cs" />
     <Compile Include="LogAggregate.cs" />
     <Compile Include="LogItem.cs" />
     <Compile Include="LogLevel.cs" />

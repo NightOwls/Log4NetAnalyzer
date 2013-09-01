@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 
 namespace Log.Service
 {
@@ -28,9 +29,21 @@ namespace Log.Service
         {
             Mapper.CreateMap<Domain.LogRecord, Model.LogItem>();
             Mapper.CreateMap<Domain.LogLevel, Model.LogLevel>();
+            
             Mapper.CreateMap<Domain.SimpleAggregate, Model.LogAggregate>()
                   .ConvertUsing(x => new Model.LogAggregate{GroupItem = x.Id.GroupItem, Count =x.Count});
-        }
+            Mapper.CreateMap<Domain.ApplicationErrorAggregate, Model.ApplicationErrorAggregate>()
+                  .ConvertUsing(x =>
+                                  {
+                                      var result = new Model.ApplicationErrorAggregate {Application = x.Application};
+                                      foreach(var logCount in x.Errors)
+                                      {
+                                          result.Errors.Add((Model.LogLevel) Enum.Parse(typeof(Model.LogLevel), Enum.GetName(typeof(Domain.LogLevel), logCount.Level)), logCount.Count);
+                                      }
+                                      return result;
+                                  });
+
+        } 
 
         #endregion
     }

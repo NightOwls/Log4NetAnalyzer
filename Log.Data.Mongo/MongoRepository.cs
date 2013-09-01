@@ -125,23 +125,90 @@ namespace Log.Data.Mongo
                                    }
                            };
 
-            return GetAggregate(bson);
-
+            return GetAggregate<SimpleAggregate>(new [] {bson});
         }
 
+        public IEnumerable<ApplicationErrorAggregate> GetApplicationErrorAggregate()
+        {
+            var group1 = new BsonDocument
+                           {
+                                {
+                                   "$group", new BsonDocument
+                                               {
+                                                   {
+                                                       "_id", new BsonDocument
+                                                                  {
+                                                                      {"Application", "$Logger"},
+                                                                      {"Level", "$Level"}
+                                                                  }
+
+                                                   },
+                                                   {
+                                                       "Count", new BsonDocument
+                                                                    {
+                                                                        {"$sum", 1}
+                                                                    }
+                                                   }
+                                               }
+                                   }
+                           };
+
+            var group2 = new BsonDocument
+                             {
+                                 {
+                                     "$group", new BsonDocument
+                                                   {
+                                                       {
+                                                           "_id", new BsonDocument
+                                                                      {
+                                                                          {"Application", "$_id.Application"}
+                                                                      }
+                                                       },
+                                                       {
+                                                           "Errors", new BsonDocument
+                                                                         {
+                                                                             {
+                                                                                 "$push", new BsonDocument
+                                                                                              {
+                                                                                                  {"Level", "$_id.Level"},
+                                                                                                  {"Count", "$Count"}
+                                                                                              }
+                                                                             }
+                                                                         }
+                                                       }
+                                                       
+                                                   }
+                                 }
+                             };
+
+            var project = new BsonDocument
+                              {
+                                  {
+                                      "$project",
+                                      new BsonDocument
+                                          {
+                                              {"_id", 0},
+                                              {"Application", "$_id.Application"},
+                                              {"Errors", "$Errors"}
+                                          }
+                                  }
+                              };
+
+            return GetAggregate<ApplicationErrorAggregate>(new [] {group1, group2, project});
+        }
+        
         #endregion
 
         #region Private Methods
 
-        private IEnumerable<SimpleAggregate> GetAggregate(BsonDocument doc)
+        private IEnumerable<TK> GetAggregate<TK>(BsonDocument[] pipeline)
         {
-            var result = mongoCollection.Aggregate(doc)
+            var result = mongoCollection.Aggregate(pipeline)
                 .ResultDocuments
-                .Select(BsonSerializer.Deserialize<SimpleAggregate>);
+                .Select(BsonSerializer.Deserialize<TK>);
 
             return result;
-        } 
-
+        }
 
         #endregion
     }

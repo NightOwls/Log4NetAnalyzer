@@ -34,6 +34,12 @@ namespace Log.Service
             return domainResult.Select(mapping.Map<SimpleAggregate, LogAggregate>);
         } 
 
+        public IEnumerable<Model.ApplicationErrorAggregate> GetApplicationErrorAggregate()
+        {
+            var domainResult = repository.GetApplicationErrorAggregate().ToList();
+            return domainResult.Select(mapping.Map<Domain.ApplicationErrorAggregate, Model.ApplicationErrorAggregate>);
+        } 
+
         public IEnumerable<LogItem> GetLogItems(string applicationName)
         {
             return repository.Select(x => x.Logger.ToLower() == applicationName.ToLower(), x => x.LogTime, true).Select(mapping.Map<LogRecord, LogItem>);

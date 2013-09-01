@@ -108,6 +108,14 @@ namespace Log.Test.Repository
             Console.WriteLine("Fetch took : {0}ms", stopwatch.ElapsedMilliseconds);
             Console.WriteLine("{0} records returned", result.Count);
         }
+        
+        [Test]
+        public void TestGetEerrorsPerApplication()
+        {
+            var repository = new MongoRepository<LogRecord>();
+
+            var result = repository.GetApplicationErrorAggregate();
+        }
 
         #endregion
     }

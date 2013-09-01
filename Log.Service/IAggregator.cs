@@ -11,6 +11,7 @@ namespace Log.Service
     {
         IEnumerable<LogItem> GetLogItems(string applicationName);
         IEnumerable<LogAggregate> GetLogCountPerApplication();
+        IEnumerable<ApplicationErrorAggregate> GetApplicationErrorAggregate();
 
     }
 }
