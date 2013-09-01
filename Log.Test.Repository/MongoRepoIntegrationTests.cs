@@ -8,6 +8,8 @@ using NUnit.Framework;
 
 namespace Log.Test.Repository
 {
+    [TestFixture]
+    [Category("Integration")]
     public class MongoRepoIntegrationTests
     {
         #region Private variables 
@@ -95,7 +97,7 @@ namespace Log.Test.Repository
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var result = mongoRepo.Select(x => x.Level == LogLevel.Fatal && x.Exception == string.Empty, x => x.LogTime, true).ToList();
+            var result = mongoRepo.Select(x => x.Level == LogLevel.Fatal && x.Exception == string.Empty && x.Logger == "EvilPigeon", x => x.LogTime, true).ToList();
 
             stopwatch.Stop();
             
@@ -112,9 +114,8 @@ namespace Log.Test.Repository
         [Test]
         public void TestGetEerrorsPerApplication()
         {
-            var repository = new MongoRepository<LogRecord>();
-
-            var result = repository.GetApplicationErrorAggregate();
+            var aggregationEngine = new MongoAggregationEngine();
+            var result = aggregationEngine.GetApplicationErrorAggregate();
         }
 
         #endregion

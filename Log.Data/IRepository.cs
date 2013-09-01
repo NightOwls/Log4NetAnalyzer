@@ -14,7 +14,5 @@ namespace Log.Data
         T FirstOrDefault(Expression<Func<T, bool>> filter);
         IEnumerable<T> Select(Expression<Func<T, bool>> filter);
         IEnumerable<T> Select(Expression<Func<T, bool>> filter, Expression<Func<T, object>> orderBy, bool descending);
-        IEnumerable<SimpleAggregate> GetLogAggregate(string groupByProperty);
-        IEnumerable<ApplicationErrorAggregate> GetApplicationErrorAggregate();
     }
 }

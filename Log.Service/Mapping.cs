@@ -33,17 +33,21 @@ namespace Log.Service
             Mapper.CreateMap<Domain.SimpleAggregate, Model.LogAggregate>()
                   .ConvertUsing(x => new Model.LogAggregate{GroupItem = x.Id.GroupItem, Count =x.Count});
             Mapper.CreateMap<Domain.ApplicationErrorAggregate, Model.ApplicationErrorAggregate>()
-                  .ConvertUsing(x =>
-                                  {
-                                      var result = new Model.ApplicationErrorAggregate {Application = x.Application};
-                                      foreach(var logCount in x.Errors)
-                                      {
-                                          result.Errors.Add((Model.LogLevel) Enum.Parse(typeof(Model.LogLevel), Enum.GetName(typeof(Domain.LogLevel), logCount.Level)), logCount.Count);
-                                      }
-                                      return result;
-                                  });
+                  .ConvertUsing(ConvertAggregate);
 
         } 
+
+        private Model.ApplicationErrorAggregate ConvertAggregate(Domain.ApplicationErrorAggregate domainAgg)
+        {
+            var result = new Model.ApplicationErrorAggregate { Application = domainAgg.Application };
+            foreach (var logCount in domainAgg.Errors)
+            {
+                var key = (Model.LogLevel) Enum.Parse(typeof (Model.LogLevel), Enum.GetName(typeof (Domain.LogLevel), logCount.Level));
+                var value = logCount.Count;
+                result.Errors.Add(key, value);
+            }
+            return result;
+        }
 
         #endregion
     }

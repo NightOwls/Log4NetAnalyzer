@@ -46,8 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MongoAggregationEngine.cs" />
+    <Compile Include="MongoDataAdapter.cs" />
     <Compile Include="MongoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
