@@ -21,7 +21,7 @@ namespace Log.Data.Mongo
         {
             if(entity == null) throw new NullReferenceException(string.Format("Entity cannot be null: {0}", typeof(T)));
 
-            var result = mongoCollection.Insert(entity);
+            var result = MongoCollection.Insert(entity);
             
             if(result.HasLastErrorMessage)
             {
@@ -39,7 +39,7 @@ namespace Log.Data.Mongo
             }
 
             var query = Query<T>.Where(filter);
-            var result = mongoCollection.FindOneAs<T>(query);
+            var result = MongoCollection.FindOneAs<T>(query);
 
             if(result == null)
             {
@@ -52,25 +52,25 @@ namespace Log.Data.Mongo
         public T FirstOrDefault(Expression<Func<T, bool>> filter)
         {
             var query = Query<T>.Where(filter);
-            return mongoCollection.FindOneAs<T>(query);
+            return MongoCollection.FindOneAs<T>(query);
         }
 
         public IEnumerable<T> Select(Expression<Func<T, bool>> filter)
         {
             var query = Query<T>.Where(filter);
-            return mongoCollection.FindAs<T>(query);
+            return MongoCollection.FindAs<T>(query);
         }
 
         public IEnumerable<T> Select(Expression<Func<T, bool>> filter, Expression<Func<T, object>> orderBy, bool descending)
         {
             var query = Query<T>.Where(filter);
             var sort = descending ? SortBy<T>.Descending(orderBy) : SortBy<T>.Ascending(orderBy);
-            return mongoCollection.FindAs<T>(query).SetSortOrder(sort);
+            return MongoCollection.FindAs<T>(query).SetSortOrder(sort);
         }
 
         public void Update(T entity)
         {
-            mongoCollection.Save(entity);
+            MongoCollection.Save(entity);
         }
 
         #endregion

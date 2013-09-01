@@ -8,12 +8,18 @@ namespace Log.Data.Mongo
     {
          #region Private Variables 
 
-        protected readonly MongoServer mongoServer;
-        protected readonly MongoDatabase mongoDatabase;
-        protected readonly MongoCollection<T> mongoCollection;
+        private readonly MongoServer mongoServer;
+        private readonly MongoDatabase mongoDatabase;
+        private readonly MongoCollection<T> mongoCollection;
         
         #endregion 
         
+        #region Protected Properties 
+
+        protected MongoCollection<T> MongoCollection { get { return mongoCollection; } }
+
+        #endregion
+
         #region Constructors
 
         public MongoDataAdapter()

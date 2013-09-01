@@ -117,7 +117,7 @@ namespace Log.Data.Mongo
 
         private IEnumerable<TK> GetAggregate<TK>(BsonDocument[] pipeline)
         {
-            var result = mongoCollection.Aggregate(pipeline)
+            var result = MongoCollection.Aggregate(pipeline)
                 .ResultDocuments
                 .Select(BsonSerializer.Deserialize<TK>);
 
