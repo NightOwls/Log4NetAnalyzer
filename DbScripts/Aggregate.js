@@ -6,6 +6,16 @@ printjson(
 
 	db.Log.Domain.LogRecord.aggregate(
 		{
+			$match:
+			{
+				"$LogTime" : 
+					{ 
+						$gt: new Date(2013, 08, 19), 
+					  	//$lt : new Date(2013, 09, 4)
+					}
+			}
+		},
+		{
 			$group:
 				{
 					_id: {GroupItem : "$Logger", Level : "$Level"},

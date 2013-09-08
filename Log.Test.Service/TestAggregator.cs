@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Log.Data;
 using Log.Data.Mongo;
@@ -41,8 +42,12 @@ namespace Log.Test.Service
         [Category("Integration")]
         public void TetsGetApplicationErrorAggregate()
         {
+
+            var fromDate = new DateTime(2013, 8, 18);
+            var toDate = new DateTime(2013, 8, 19);
+
             var aggregator = new Aggregator(new MongoAggregationEngine(), new Mapping());
-            var result = aggregator.GetApplicationErrorAggregate().ToList();
+            var result = aggregator.GetApplicationErrorAggregate(fromDate, toDate).ToList();
 
             Assert.IsTrue(result.Any());
         }

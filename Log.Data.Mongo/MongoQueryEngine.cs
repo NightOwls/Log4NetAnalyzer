@@ -5,7 +5,7 @@ using Log.Domain;
 
 namespace Log.Data.Mongo
 {
-    public class QueryEngine : IQueryEngine
+    public class MongoQueryEngine : IQueryEngine
     {
         #region Private Variables 
 
@@ -15,7 +15,7 @@ namespace Log.Data.Mongo
 
         #region Constructors
 
-        public QueryEngine(IRepository<LogRecord> repository)
+        public MongoQueryEngine(IRepository<LogRecord> repository)
         {
             this.repository = repository;
         }

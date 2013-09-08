@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Log.Domain;
 using MongoDB.Bson;
@@ -42,8 +43,24 @@ namespace Log.Data.Mongo
             return GetAggregate<SimpleAggregate>(new[] { bson });
         }
 
-        public IEnumerable<ApplicationErrorAggregate> GetApplicationErrorAggregate()
+        public IEnumerable<ApplicationErrorAggregate> GetApplicationErrorAggregate(DateTime fromDate, DateTime toDate)
         {
+            var match = new BsonDocument
+                            {
+                                {
+                                    "$match", new BsonDocument
+                                                    {
+                                                        {
+                                                            "LogTime", new BsonDocument
+                                                                            {
+                                                                                {"$gt", fromDate},
+                                                                                {"$lt", toDate}
+                                                                            }
+                                                        }
+                                                    }
+                                 }
+                            };
+
             var group1 = new BsonDocument
                            {
                                 {
@@ -55,7 +72,6 @@ namespace Log.Data.Mongo
                                                                       {"Application", "$Logger"},
                                                                       {"Level", "$Level"}
                                                                   }
-
                                                    },
                                                    {
                                                        "Count", new BsonDocument
@@ -64,7 +80,8 @@ namespace Log.Data.Mongo
                                                                     }
                                                    }
                                                }
-                                   }
+                                 }
+                                
                            };
 
             var group2 = new BsonDocument
@@ -108,7 +125,7 @@ namespace Log.Data.Mongo
                                   }
                               };
 
-            return GetAggregate<ApplicationErrorAggregate>(new[] { group1, group2, project });
+            return GetAggregate<ApplicationErrorAggregate>(new[] { match, group1, group2, project });
         }
 
         #endregion

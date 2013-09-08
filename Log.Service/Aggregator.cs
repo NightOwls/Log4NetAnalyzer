@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Log.Data;
 using Log.Domain;
@@ -33,9 +34,9 @@ namespace Log.Service
             return domainResult.Select(mapping.Map<SimpleAggregate, LogAggregate>);
         } 
 
-        public IEnumerable<Model.ApplicationErrorAggregate> GetApplicationErrorAggregate()
+        public IEnumerable<Model.ApplicationErrorAggregate> GetApplicationErrorAggregate(DateTime fromDate, DateTime toDate)
         {
-            var domainResult = aggregationEngine.GetApplicationErrorAggregate().ToList();
+            var domainResult = aggregationEngine.GetApplicationErrorAggregate(fromDate, toDate).ToList();
             return domainResult.Select(mapping.Map<Domain.ApplicationErrorAggregate, Model.ApplicationErrorAggregate>);
         }
 

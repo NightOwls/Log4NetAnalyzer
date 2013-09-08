@@ -114,8 +114,29 @@ namespace Log.Test.Repository
         [Test]
         public void TestGetEerrorsPerApplication()
         {
+            var stopwatch = Stopwatch.StartNew();
+            
             var aggregationEngine = new MongoAggregationEngine();
-            var result = aggregationEngine.GetApplicationErrorAggregate();
+
+            var fromDate = new DateTime(2013, 9, 3);
+            var toDate = new DateTime(2013, 9, 4);
+
+            var result = aggregationEngine.GetApplicationErrorAggregate(fromDate, toDate);
+
+            stopwatch.Stop();
+            Console.WriteLine("Fetch took : {0}ms", stopwatch.ElapsedMilliseconds);
+
+            foreach (var agg in result)
+            {
+                Console.WriteLine("{0} ... ", agg.Application);
+                Console.WriteLine();
+
+                foreach (var err in agg.Errors)
+                {
+                    Console.WriteLine("{0} : {1}", err.Level, err.Count );
+                }
+                Console.WriteLine();
+            }
         }
 
         #endregion

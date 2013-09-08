@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Log.Model;
 
 namespace Log.Service
@@ -6,6 +7,6 @@ namespace Log.Service
     public interface IAggregator
     {
         IEnumerable<LogAggregate> GetLogCountPerApplication();
-        IEnumerable<ApplicationErrorAggregate> GetApplicationErrorAggregate();
+        IEnumerable<ApplicationErrorAggregate> GetApplicationErrorAggregate(DateTime fromDate, DateTime toDate);
     }
 }
