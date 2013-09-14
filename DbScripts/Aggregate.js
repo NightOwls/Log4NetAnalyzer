@@ -8,10 +8,11 @@ printjson(
 		{
 			$match:
 			{
-				"$LogTime" : 
+				LogTime : 
 					{ 
-						$gt: new Date(2013, 08, 19), 
-					  	//$lt : new Date(2013, 09, 4)
+
+	                      $gt : new ISODate("2013-09-01T00:00:00Z") ,
+	                      $lt : new ISODate("2013-09-04T00:00:00Z")
 					}
 			}
 		},

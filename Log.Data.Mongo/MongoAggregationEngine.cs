@@ -125,7 +125,9 @@ namespace Log.Data.Mongo
                                   }
                               };
 
-            return GetAggregate<ApplicationErrorAggregate>(new[] { match, group1, group2, project });
+            var sort = new BsonDocument {{"$sort", new BsonDocument{{"Application", 1}}}};
+
+            return GetAggregate<ApplicationErrorAggregate>(new[] { match, group1, group2, project, sort});
         }
 
         #endregion
