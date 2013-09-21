@@ -5,6 +5,7 @@ using Log.Data.Mongo;
 using Log.Domain;
 using MongoDB.Bson;
 using NUnit.Framework;
+using Log.Enum;
 
 namespace Log.Test.Repository
 {
@@ -121,7 +122,7 @@ namespace Log.Test.Repository
             var fromDate = new DateTime(2013, 9, 3);
             var toDate = new DateTime(2013, 9, 4);
 
-            var result = aggregationEngine.GetApplicationErrorAggregate(fromDate, toDate);
+            var result = aggregationEngine.GetApplicationErrorAggregate(TimeGroup.Hour, fromDate, toDate);
 
             stopwatch.Stop();
             Console.WriteLine("Fetch took : {0}ms", stopwatch.ElapsedMilliseconds);

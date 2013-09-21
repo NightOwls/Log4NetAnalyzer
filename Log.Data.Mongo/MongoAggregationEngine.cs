@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Log.Domain;
+using Log.Enum;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 
@@ -11,39 +12,7 @@ namespace Log.Data.Mongo
     {
         #region Public Methods 
 
-        public IEnumerable<SimpleAggregate> GetLogAggregate(string groupByProperty)
-        {
-            var bson = new BsonDocument
-                           {
-                                {
-                                   "$group",
-                                   new BsonDocument
-                                       {
-                                           {
-                                               "_id", new BsonDocument
-                                                          {
-                                                              {
-                                                                  "GroupItem", "$" + groupByProperty
-                                                              }
-                                                          }
-
-                                           },
-                                           {
-                                               "Count", new BsonDocument
-                                                            {
-                                                                {
-                                                                    "$sum", 1
-                                                                }
-                                                            }
-                                           }
-                                       }
-                                   }
-                           };
-
-            return GetAggregate<SimpleAggregate>(new[] { bson });
-        }
-
-        public IEnumerable<ApplicationErrorAggregate> GetApplicationErrorAggregate(DateTime fromDate, DateTime toDate)
+        public IEnumerable<ApplicationErrorAggregate> GetApplicationErrorAggregate(TimeGroup timeFilter, DateTime fromDate, DateTime toDate)
         {
             var match = new BsonDocument
                             {

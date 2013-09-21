@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Log.Model
+namespace Log.Enum
 {
     public enum LogLevel
     {
-        Debug,
-        Info,
-        Warn,
-        Error,
-        Fatal
+        Debug = 10,
+        Info = 20, 
+        Warn = 30, 
+        Error = 40,
+        Fatal = 50
     }
 }

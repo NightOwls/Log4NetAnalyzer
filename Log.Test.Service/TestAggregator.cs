@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Log.Data;
 using Log.Data.Mongo;
-using Log.Domain;
+using Log.Enum;
 using Log.Ioc;
 using Log.Service;
 using Moq;
@@ -18,7 +17,7 @@ namespace Log.Test.Service
         {
             var repo = new Mock<IAggregationEngine>();
 
-            repo.Setup(x => x.GetLogAggregate(It.IsAny<string>())).Returns(new List<SimpleAggregate> { new SimpleAggregate {Id = new AggregateId{GroupItem = "Application"}, Count = 100}});
+           // repo.Setup(x => x.GetLogAggregate(It.IsAny<string>())).Returns(new List<SimpleAggregate> { new SimpleAggregate {Id = new AggregateId{GroupItem = "Application"}, Count = 100}});
            
             Container.RegisterInstance(repo.Object);
 
@@ -28,26 +27,14 @@ namespace Log.Test.Service
         }
 
         [Test]
-        [Category("Unit")]
-        public void TestGetLogItemAggregate()
-        {
-            var aggregator = Container.Resolve<IAggregator>();
-            var result = aggregator.GetLogCountPerApplication().ToList();
-
-            Assert.IsTrue(result.Count() == 1);
-            Assert.IsTrue(result.First().GroupItem == "Application");
-        }
-
-        [Test]
         [Category("Integration")]
         public void TetsGetApplicationErrorAggregate()
         {
-
-            var fromDate = new DateTime(2013, 8, 18);
-            var toDate = new DateTime(2013, 8, 19);
+            var fromDate = new DateTime(2013, 9, 1);
+            var toDate = new DateTime(2013, 9, 4);
 
             var aggregator = new Aggregator(new MongoAggregationEngine(), new Mapping());
-            var result = aggregator.GetApplicationErrorAggregate(fromDate, toDate).ToList();
+            var result = aggregator.GetApplicationErrorAggregate(TimeGroup.Hour, fromDate, toDate).ToList();
 
             Assert.IsTrue(result.Any());
         }

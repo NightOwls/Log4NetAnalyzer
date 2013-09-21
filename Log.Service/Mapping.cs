@@ -28,10 +28,8 @@ namespace Log.Service
         private void Init()
         {
             Mapper.CreateMap<Domain.LogRecord, Model.LogItem>();
-            Mapper.CreateMap<Domain.LogLevel, Model.LogLevel>();
+            Mapper.CreateMap<Log.Enum.LogLevel, Log.Enum.LogLevel>();
             
-            Mapper.CreateMap<Domain.SimpleAggregate, Model.LogAggregate>()
-                  .ConvertUsing(x => new Model.LogAggregate{GroupItem = x.Id.GroupItem, Count =x.Count});
             Mapper.CreateMap<Domain.ApplicationErrorAggregate, Model.ApplicationErrorAggregate>()
                   .ConvertUsing(ConvertAggregate);
 
@@ -42,7 +40,7 @@ namespace Log.Service
             var result = new Model.ApplicationErrorAggregate { Application = domainAgg.Application };
             foreach (var logCount in domainAgg.Errors)
             {
-                var key = (Model.LogLevel) Enum.Parse(typeof (Model.LogLevel), Enum.GetName(typeof (Domain.LogLevel), logCount.Level));
+                var key = logCount.Level;
                 var value = logCount.Count;
                 result.Errors.Add(key, value);
             }

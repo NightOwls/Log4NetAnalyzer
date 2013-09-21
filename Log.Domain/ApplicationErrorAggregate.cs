@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Log.Enum;
 
 namespace Log.Domain
 {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Log.Domain;
+using Log.Enum;
 
 namespace Log.Data
 {
     public interface IAggregationEngine
     {
-        IEnumerable<SimpleAggregate> GetLogAggregate(string groupByProperty);
-        IEnumerable<ApplicationErrorAggregate> GetApplicationErrorAggregate(DateTime fromDate, DateTime toDate);
+        IEnumerable<ApplicationErrorAggregate> GetApplicationErrorAggregate(TimeGroup timeFilter, DateTime fromDate, DateTime toDate);
     }
 }

@@ -6,7 +6,7 @@ namespace Log.Data.Mongo
 {
     public class MongoDataAdapter<T> where T : EntityBase
     {
-         #region Private Variables 
+        #region Private Variables 
 
         private readonly MongoServer mongoServer;
         private readonly MongoDatabase mongoDatabase;

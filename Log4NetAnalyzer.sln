@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Test.Service", "Log.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Ioc", "Log.Ioc\Log.Ioc.csproj", "{4ED189F3-FFBC-4415-88F9-12DE8A898E3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Enum", "Log.Enum\Log.Enum.csproj", "{676439A8-6CA7-4EB8-9900-3105475FA0DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{4ED189F3-FFBC-4415-88F9-12DE8A898E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ED189F3-FFBC-4415-88F9-12DE8A898E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ED189F3-FFBC-4415-88F9-12DE8A898E3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{676439A8-6CA7-4EB8-9900-3105475FA0DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{676439A8-6CA7-4EB8-9900-3105475FA0DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{676439A8-6CA7-4EB8-9900-3105475FA0DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{676439A8-6CA7-4EB8-9900-3105475FA0DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -49,12 +49,17 @@
     <Compile Include="EntityBase.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="SimpleAggregate.cs" />
-    <Compile Include="LogLevel.cs" />
     <Compile Include="LogRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Log.Enum\Log.Enum.csproj">
+      <Project>{676439a8-6ca7-4eb8-9900-3105475fa0dd}</Project>
+      <Name>Log.Enum</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
