@@ -11,10 +11,10 @@ printjson(
 				LogTime : 
 					{ 
 
-	                      $gt : new ISODate("2013-08-01T00:00:00Z") ,
-	                      $lt : new ISODate("2013-09-09T00:00:00Z")
+	                      $gt : new ISODate("2013-09-27T00:00:00Z") ,
+	                      $lt : new ISODate("2013-09-28T00:00:00Z")
 					}
-					,Logger: "EvilPigeon"
+					//,Logger: "ShapeMatcher"
 			}
 		},
 		{ 
