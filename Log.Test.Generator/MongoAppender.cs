@@ -4,6 +4,7 @@ using Log.Domain;
 using log4net.Appender;
 using log4net.Core;
 using System.Linq;
+using Log.Enum;
 
 namespace Log.Test.Generator
 {
@@ -38,7 +39,7 @@ namespace Log.Test.Generator
         private static LogLevel GetLogLevel(Level level)
         {
             LogLevel logLevel;
-            return Enum.TryParse(level.Name, true, out logLevel) ? logLevel : LogLevel.Debug;
+            return System.Enum.TryParse(level.Name, true, out logLevel) ? logLevel : LogLevel.Debug;
         }
     }
 }

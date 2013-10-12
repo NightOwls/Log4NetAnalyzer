@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AA7CC885-1941-4846-A5B6-A9960BBA5CD5}</ProjectGuid>
+    <ProjectGuid>{676439A8-6CA7-4EB8-9900-3105475FA0DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Log.Service</RootNamespace>
-    <AssemblyName>Log.Service</AssemblyName>
+    <RootNamespace>Log.Enum</RootNamespace>
+    <AssemblyName>Log.Enum</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,12 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="Munq.IocContainer">
-      <HintPath>..\packages\Munq.IocContainer.3.1.6\Lib\Munq.IocContainer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,36 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aggregator.cs" />
-    <Compile Include="IAggregator.cs" />
-    <Compile Include="IMapping.cs" />
-    <Compile Include="Mapping.cs" />
+    <Compile Include="LogLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Log.Data.Mongo\Log.Data.Mongo.csproj">
-      <Project>{f5e01ff9-84a7-4576-954e-3c3b40c453e9}</Project>
-      <Name>Log.Data.Mongo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Log.Data\Log.Data.csproj">
-      <Project>{895763db-9c87-459c-98b0-fd28ae267535}</Project>
-      <Name>Log.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Log.Domain\Log.Domain.csproj">
-      <Project>{00c27d7e-b806-4daa-9cfc-f927399cca62}</Project>
-      <Name>Log.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Log.Enum\Log.Enum.csproj">
-      <Project>{676439a8-6ca7-4eb8-9900-3105475fa0dd}</Project>
-      <Name>Log.Enum</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Log.Model\Log.Model.csproj">
-      <Project>{86438049-f087-40b3-b6ed-3ff63d39d1c1}</Project>
-      <Name>Log.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="TimeGroup.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

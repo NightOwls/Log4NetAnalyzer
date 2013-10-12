@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using log4net;
 using NUnit.Framework;
-using Log.Domain;
+using Log.Enum;
 
 namespace Log.Test.Generator
 {
@@ -40,7 +40,7 @@ namespace Log.Test.Generator
         //HOW MANY OF EACH 
         
         //MAKE THIS GREATER THAN 0 TO SET THE NUMBER OF LOGS PER TYPE IN ONE GO 
-        private const int DEFAULT_NUM_LOGS = 0;
+        private const int DEFAULT_NUM_LOGS = 1;
 
         //OTHERWISE SET THEM ONE BY ONE 
         private const int NUM_DEBUG_LOGS =    DEFAULT_NUM_LOGS > 0 ? DEFAULT_NUM_LOGS : 50000;
@@ -92,7 +92,8 @@ namespace Log.Test.Generator
         [Test]
         public void GenerateLogs()
         {
-            var stopwatch = Stopwatch.StartNew();
+
+              var stopwatch = Stopwatch.StartNew();
 
             WriteLog(LogLevel.Debug, NUM_DEBUG_LOGS, DEBUG_MSG);
             WriteLog(LogLevel.Debug, NUM_DEBUG_EX_LOGS, DEBUG_EX_MSG, GenerateInvalidCastException());

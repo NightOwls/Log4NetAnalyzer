@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Log.Data;
-using Log.Domain;
-using Log.Model;
+using Log.Enum;
 
 namespace Log.Service
 {
@@ -28,15 +27,9 @@ namespace Log.Service
 
         #region Public Methods 
 
-        public IEnumerable<LogAggregate> GetLogCountPerApplication()
+        public IEnumerable<Model.ApplicationErrorAggregate> GetApplicationErrorAggregate(TimeGroup timefilter, DateTime fromDate, DateTime toDate)
         {
-            var domainResult = aggregationEngine.GetLogAggregate("Logger");
-            return domainResult.Select(mapping.Map<SimpleAggregate, LogAggregate>);
-        } 
-
-        public IEnumerable<Model.ApplicationErrorAggregate> GetApplicationErrorAggregate(DateTime fromDate, DateTime toDate)
-        {
-            var domainResult = aggregationEngine.GetApplicationErrorAggregate(fromDate, toDate).ToList();
+            var domainResult = aggregationEngine.GetApplicationErrorAggregate(timefilter, fromDate, toDate).ToList();
             return domainResult.Select(mapping.Map<Domain.ApplicationErrorAggregate, Model.ApplicationErrorAggregate>);
         }
 

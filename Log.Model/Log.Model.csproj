@@ -40,10 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationErrorAggregate.cs" />
-    <Compile Include="LogAggregate.cs" />
     <Compile Include="LogItem.cs" />
-    <Compile Include="LogLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Log.Enum\Log.Enum.csproj">
+      <Project>{676439a8-6ca7-4eb8-9900-3105475fa0dd}</Project>
+      <Name>Log.Enum</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

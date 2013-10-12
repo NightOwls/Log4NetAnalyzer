@@ -65,6 +65,10 @@
       <Project>{00c27d7e-b806-4daa-9cfc-f927399cca62}</Project>
       <Name>Log.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Log.Enum\Log.Enum.csproj">
+      <Project>{676439a8-6ca7-4eb8-9900-3105475fa0dd}</Project>
+      <Name>Log.Enum</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

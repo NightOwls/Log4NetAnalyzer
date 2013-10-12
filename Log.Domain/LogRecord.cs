@@ -1,4 +1,5 @@
 ﻿using System;
+using Log.Enum;
 
 namespace Log.Domain
 {
