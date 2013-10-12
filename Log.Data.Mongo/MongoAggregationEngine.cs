@@ -30,65 +30,90 @@ namespace Log.Data.Mongo
                                  }
                             };
 
-            var group1 = new BsonDocument
-                           {
-                                {
-                                   "$group", new BsonDocument
-                                               {
-                                                   {
-                                                       "_id", new BsonDocument
-                                                                  {
-                                                                      {"Application", "$Logger"},
-                                                                      {"Level", "$Level"}
-                                                                  }
-                                                   },
-                                                   {
-                                                       "Count", new BsonDocument
-                                                                    {
-                                                                        {"$sum", 1}
-                                                                    }
-                                                   }
-                                               }
-                                 }
-                                
-                           };
+            var project1 = new BsonDocument
+                               {
+                                   {
+                                       "$project", new BsonDocument
+                                                       {
+                                                           {"_id", "$_id"},
+                                                           {"Logger", "$Logger"},
+                                                           {"Level", "$Level"},
+                                                           {"hour", new BsonDocument {{"hour", "$LogTime"}}},
+                                                           {"day", new BsonDocument {{"dayOfMonth", "$LogTime"}}},
+                                                           {"month", new BsonDocument {{"month", "$LogTime"}}},
+                                                           {"year", new BsonDocument {{"year", "$LogTime"}}}
+                                                       }
+                                   }
+                               };
 
-            var group2 = new BsonDocument
+
+
+            var group1 = new BsonDocument
                              {
                                  {
                                      "$group", new BsonDocument
                                                    {
-                                                       {
-                                                           "_id", new BsonDocument
-                                                                      {
-                                                                          {"Application", "$_id.Application"}
-                                                                      }
-                                                       },
-                                                       {
-                                                           "Errors", new BsonDocument
-                                                                         {
-                                                                             {
-                                                                                 "$push", new BsonDocument
-                                                                                              {
-                                                                                                  {"Level", "$_id.Level"},
-                                                                                                  {"Count", "$Count"}
-                                                                                              }
-                                                                             }
-                                                                         }
-                                                       }
-                                                       
-                                                   }
-                                 }
+                                                        { 
+                                                            "_id", new BsonDocument
+                                                                       {
+                                                                           {"groupItem", "$Logger"},
+                                                                           {"level", "$Level"},
+                                                                           {"hour", "$hour"},
+                                                                           {"day", "$day"},
+                                                                           {"month", "$month"},
+                                                                           {"year", "$year"}
+                                                                       }
+                                                        },
+                                                        {
+                                                            "Count", new BsonDocument
+                                                                        {
+                                                                            {"$sum", 1}
+                                                                        }
+                                                        }
+                                                    }
+                                },
                              };
+            
 
-            var project = new BsonDocument
+            var group2 = new BsonDocument
+                           {
+                                {
+                                   "$group", new BsonDocument
+                                                   {
+			                                            { 
+                                                            "_id", new BsonDocument 
+                                                                    {
+						                                                 {"groupItem", "$_id.groupItem"},
+					                                                }
+                                                        },
+                                                        {
+				                                            "Errors", new BsonDocument
+					                                                    {
+							                                                { 
+                                                                                "$push", new BsonDocument
+                                                                                            {
+									                                                            {"Level", "$_id.level"}, 
+									                                                            {"Hour", "$_id.hour"}, 
+									                                                            {"Day", "$_id.day"}, 
+									                                                            {"Month", "$_id.month"}, 
+									                                                            {"Year", "$_id.year"}, 
+									                                                            {"Count", "$Count"}
+								                                                            }
+					                                                        }
+			                                                            }
+                                                        }
+                                                   }
+                                }
+                           };
+           
+            var project2 = new BsonDocument
                               {
                                   {
                                       "$project",
                                       new BsonDocument
                                           {
                                               {"_id", 0},
-                                              {"Application", "$_id.Application"},
+                                              {"Application", "$_id.groupItem"},
                                               {"Errors", "$Errors"}
                                           }
                                   }
@@ -96,7 +121,7 @@ namespace Log.Data.Mongo
 
             var sort = new BsonDocument {{"$sort", new BsonDocument{{"Application", 1}}}};
 
-            return GetAggregate<ApplicationErrorAggregate>(new[] { match, group1, group2, project, sort});
+            return GetAggregate<ApplicationErrorAggregate>(new[] { match, project1, group1, group2, project2, sort });  
         }
 
         #endregion

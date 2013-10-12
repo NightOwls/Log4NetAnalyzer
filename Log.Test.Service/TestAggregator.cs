@@ -30,8 +30,8 @@ namespace Log.Test.Service
         [Category("Integration")]
         public void TetsGetApplicationErrorAggregate()
         {
-            var fromDate = new DateTime(2013, 9, 1);
-            var toDate = new DateTime(2013, 9, 4);
+            var fromDate = new DateTime(2013, 01, 1);
+            var toDate = new DateTime(2013, 10, 4);
 
             var aggregator = new Aggregator(new MongoAggregationEngine(), new Mapping());
             var result = aggregator.GetApplicationErrorAggregate(TimeGroup.Hour, fromDate, toDate).ToList();
