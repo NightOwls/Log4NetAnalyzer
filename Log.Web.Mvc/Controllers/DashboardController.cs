@@ -11,7 +11,7 @@ namespace Log.Web.Mvc.Controllers
     {
         public ActionResult Index()
         {
-            //var widgets = new List<Widget>();
+            var widgets = new List<Widget>();
             var widget = new Widget {Id = 1, Title = "Test Widget"};
 
             var categories = SetupCategories();
@@ -20,9 +20,9 @@ namespace Log.Web.Mvc.Controllers
             var chart = BuildLineGraph("My Graph", categories, datasets);
             widget.Chart = chart;
 
-            //widgets.Add(widget);
+            widgets.Add(widget);
 
-            return View(widget);
+            return View(widgets);
         }
 
         public LineGraph BuildLineGraph(string caption, List<Category> categories, List<Dataset> datasets)

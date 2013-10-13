@@ -1,28 +1,12 @@
-﻿@model Log.Web.Mvc.Models.Widget
+﻿@model List<Log.Web.Mvc.Models.Widget>
 
 @{
     ViewBag.Title = "Dashboard";
 }
 
-@section HeadScripts
-{
-    <script type="text/javascript">
-        var chartId = "chart";
-        var chart = new FusionCharts('@Url.Content("~/Scripts/FusionCharts/FCF_Line.swf")', chartId, "800", "500", "0", "1");
-        chart.setDataXML('@Html.Raw(Model.Chart.XmlSerialize())');
-        chart.render(chartId);
-    </script>
-}
-
 <h2>Dashboard</h2>
 
-<strong>@Model.Title</strong>
-<div id="chart">This text is replaced by the chart.</div>
-
-@*@foreach (var widget in Model)
+@foreach (var widget in Model)
 {
-    if (widget.Chart != null && widget.Chart is LineGraph)
-    {
-        Html.RenderPartial("~/Views/Widgets/LineGraph.cshtml", widget);
-    }
-}*@
+    @Html.Partial("~/Views/Widgets/MultiSeriesLineGraph.cshtml", widget)
+}
