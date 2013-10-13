@@ -312,7 +312,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Widgets\LineGraph.cshtml" />
+    <Content Include="Views\Widgets\MultiSeriesLineGraph.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
