@@ -8,7 +8,7 @@ namespace Log.Model
         #region Public Properties 
 
         public string Application { get; set; }
-        public Dictionary<LogLevel ,int> Errors { get; set; }
+        public Dictionary<LogLevel, int> Errors { get; set; }
 
         #endregion
 
