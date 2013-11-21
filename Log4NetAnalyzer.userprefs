@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Log.Test.Generator/TestGenerator.cs">
+    <Files>
+      <File FileName="Log.Test.Generator/TestGenerator.cs" Line="105" Column="85" />
+      <File FileName="Log.Web.Mvc/Filters/InitializeSimpleMembershipAttribute.cs" Line="1" Column="1" />
+      <File FileName="Log.Service/Aggregator.cs" Line="1" Column="1" />
+      <File FileName="Log.Test.Repository/MongoRepoIntegrationTests.cs" Line="1" Column="1" />
+      <File FileName="Log.Test.Service/TestAggregator.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

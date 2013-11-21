@@ -7,6 +7,6 @@ namespace Log.Service
 {
     public interface IAggregator
     {
-        IEnumerable<ApplicationErrorAggregate> GetApplicationErrorAggregate(TimeGroup timeFilter, DateTime fromDate, DateTime toDate);
+        IEnumerable<int> GetApplicationErrorAggregate(TimeGroup timeFilter, DateTime fromDate, DateTime toDate);
     }
 }

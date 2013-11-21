@@ -29,9 +29,9 @@ namespace Log.Service
         {
             Mapper.CreateMap<Domain.LogRecord, Model.LogItem>();
             Mapper.CreateMap<Log.Enum.LogLevel, Log.Enum.LogLevel>();
-            
-            Mapper.CreateMap<Domain.ApplicationErrorAggregate, Model.ApplicationErrorAggregate>()
-                  .ConvertUsing(ConvertAggregate);
+
+            Mapper.CreateMap<Domain.ApplicationErrorAggregate, int>()
+                .ForMember(dest => dest, x => x.MapFrom(src => src.Errors));
 
         } 
 

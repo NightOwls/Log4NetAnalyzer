@@ -57,7 +57,7 @@ namespace Log.Data.Mongo
                                                             "_id", new BsonDocument
                                                                        {
                                                                            {"groupItem", "$Logger"},
-                                                                           {"level", "$Level"},
+                                                                           //{"level", "$Level"}, - total number of errors 
                                                                            {"hour", "$hour"},
                                                                            {"day", "$day"},
                                                                            {"month", "$month"},
@@ -92,7 +92,7 @@ namespace Log.Data.Mongo
 							                                                { 
                                                                                 "$push", new BsonDocument
                                                                                             {
-									                                                            {"Level", "$_id.level"}, 
+									                                                            //{"Level", "$_id.level"}, 
 									                                                            {"Hour", "$_id.hour"}, 
 									                                                            {"Day", "$_id.day"}, 
 									                                                            {"Month", "$_id.month"}, 
