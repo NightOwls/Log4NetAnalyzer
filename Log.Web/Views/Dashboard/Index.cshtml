@@ -1,0 +1,12 @@
+﻿@model List<Log.Web.Mvc.Models.Widget>
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h2>Dashboard</h2>
+
+@foreach (var widget in Model)
+{
+    @Html.Partial("~/Views/Widgets/MultiSeriesLineGraph.cshtml", widget)
+}
