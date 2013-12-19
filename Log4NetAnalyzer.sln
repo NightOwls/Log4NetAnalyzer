@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Enum", "Log.Enum\Log.En
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Web", "Log.Web\Log.Web.csproj", "{70E133A7-6690-4C39-9CBD-7B95E4030FF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Data.Sql", "Log.Data.Sql\Log.Data.Sql.csproj", "{BD19E1CA-814F-46F3-A52D-3B3DB9787AEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{70E133A7-6690-4C39-9CBD-7B95E4030FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70E133A7-6690-4C39-9CBD-7B95E4030FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70E133A7-6690-4C39-9CBD-7B95E4030FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD19E1CA-814F-46F3-A52D-3B3DB9787AEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD19E1CA-814F-46F3-A52D-3B3DB9787AEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD19E1CA-814F-46F3-A52D-3B3DB9787AEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD19E1CA-814F-46F3-A52D-3B3DB9787AEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
