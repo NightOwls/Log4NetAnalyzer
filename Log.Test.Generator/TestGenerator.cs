@@ -92,8 +92,8 @@ namespace Log.Test.Generator
         [Test]
         public void GenerateLogs()
         {
-
-              var stopwatch = Stopwatch.StartNew();
+            
+            var stopwatch = Stopwatch.StartNew();
 
             WriteLog(LogLevel.Debug, NUM_DEBUG_LOGS, DEBUG_MSG);
             WriteLog(LogLevel.Debug, NUM_DEBUG_EX_LOGS, DEBUG_EX_MSG, GenerateInvalidCastException());
